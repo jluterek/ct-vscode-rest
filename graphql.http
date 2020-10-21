@@ -1,0 +1,44 @@
+# @name login
+POST {{auth_url}}/oauth/token?grant_type=client_credentials
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic {{client_id}}:{{client_secret}}
+
+grant_type=client_credentials&scope=manage_project:{{projectKey}}
+
+###
+
+POST {{host}}/{{projectKey}}/graphql
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.access_token}}
+X-REQUEST-TYPE: GraphQL
+
+query project {
+  project {
+    key
+    name
+    countries
+    currencies
+    languages
+    createdAt
+    messages {
+      enabled
+      deleteDaysAfterCreation
+    }
+    carts {
+      allowAddingUnpublishedProducts
+      countryTaxRateFallbackEnabled
+    }
+    shoppingLists {
+      deleteDaysAfterLastModification
+    }
+    version
+    externalOAuth {
+      url
+      authorizationHeader
+    }
+  }
+}
+
+{
+  "variables": "here"
+}

@@ -1,0 +1,11 @@
+# @name login
+POST {{auth_url}}/oauth/token?grant_type=client_credentials
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic {{client_id}}:{{client_secret}}
+
+grant_type=client_credentials&scope=manage_project:{{projectKey}}
+
+###
+
+GET {{host}}/{{projectKey}}
+Authorization: Bearer {{login.response.body.access_token}}

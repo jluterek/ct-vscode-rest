@@ -1,0 +1,15 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "host": "https://api.us-central1.gcp.commercetools.com",
+      "auth_url": "https://auth.us-central1.gcp.commercetools.com"
+    },
+    "project-key": {
+      "host": "{{$shared host}}",
+      "auth_url": "{{$shared auth_url}}",
+      "projectKey": "project-key",
+      "client_id": "clientid",
+      "client_secret": "clientsecret"
+    }
+  }
+}
